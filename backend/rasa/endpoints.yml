@@ -1,0 +1,34 @@
+# This file contains the endpoints your bot can use.
+
+# Server for fetching models
+# models:
+#   url: "http://my-server.com/models/default_core@latest"
+#   wait_time_between_pulls: 10
+
+# Custom Action Server (Enable if using custom actions)
+action_endpoint:
+  url: "http://localhost:5055/webhook"
+# Tracker store for saving conversation history
+# Uncomment if using Redis or MongoDB
+
+# tracker_store:
+#   type: redis
+#   url: "localhost"
+#   port: 6379
+#   db: 0
+#   password: ""
+#   use_ssl: false
+
+# tracker_store:
+#   type: mongod
+#   url: "mongodb://localhost:27017"
+#   db: "rasa"
+#   username: "<username>"
+#   password: "<password>"
+
+# Event broker (optional)
+# event_broker:
+#   url: "localhost"
+#   username: "<username>"
+#   password: "<password>"
+#   queue: "<queue>"

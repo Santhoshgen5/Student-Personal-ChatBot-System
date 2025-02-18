@@ -1,0 +1,11 @@
+.MuiBox-root {
+    margin: 0px;
+    padding: 0px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* This helps in eliminating layout issues */
+}
