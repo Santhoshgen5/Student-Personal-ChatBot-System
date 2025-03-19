@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.timezone import now
 from datetime import timedelta
 
+
 # Define possible course options
 class Course(models.TextChoices):
     COMPUTER_SCIENCE = 'CS', 'Computer Science'
@@ -64,18 +65,6 @@ class ExamSchedule(models.Model):
     def __str__(self):
         return f"{self.subject} on {self.exam_date} for {self.get_course_display()}"
 
-# Student model
-class Student(models.Model):
-    student_name = models.CharField(max_length=100)
-    student_course = models.CharField(max_length=5, choices=Course.choices)
-    student_year = models.PositiveSmallIntegerField(choices=Year.choices)
-    student_reg = models.CharField(max_length=20, unique=True)
-    student_email = models.EmailField(blank=True, null=True)
-    student_details = models.TextField(blank=True, null=True)
-    student_pan = models.CharField(max_length=40,blank=True, null=True)
-
-    def __str__(self):
-        return self.student_name
     
 class Staff(models.Model):
     staff_name = models.CharField(max_length=100)
@@ -83,6 +72,23 @@ class Staff(models.Model):
     staff_id = models.CharField(max_length=20, unique=True)
     staff_email = models.EmailField(blank=True, null=True)
     staff_details = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.staff_name
+
+# Student model
+class Student(models.Model):
+    student_name = models.CharField(max_length=100)
+    student_profile = models.ImageField(upload_to='students_profile', null=True, blank=True)
+    student_course = models.CharField(max_length=5, choices=Course.choices, default='CS')
+    student_year = models.PositiveSmallIntegerField(choices=Year.choices, default=1)
+    student_reg = models.CharField(max_length=20, unique=True)
+    student_phone = models.PositiveBigIntegerField(blank=True, null=True)
+    student_bank_acc = models.PositiveBigIntegerField(blank=True, null=True)
+    student_email = models.EmailField(blank=True, null=True)
+    student_details = models.TextField(blank=True, null=True)
+    student_pan = models.CharField(max_length=40,blank=True, null=True)
+    student_class_staff = models.ForeignKey(Staff, on_delete=models.CASCADE, blank=True, null=True )
 
     def __str__(self):
         return self.student_name
@@ -100,7 +106,7 @@ class User(AbstractUser):
 
 
 class Arrear(models.Model):
-    student = models.ForeignKey(Student, models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     subject = models.CharField(choices=Subjects, max_length=90)
     semester = models.IntegerField(choices=[
         (1, "Semester 1"),
@@ -119,7 +125,19 @@ class Arrear(models.Model):
 
 
 
-
+class Attendance(models.Model):
+    std = models.ForeignKey(Student, on_delete=models.CASCADE)
+    semester = models.IntegerField(choices=[
+        (1, "Semester 1"),
+        (2, "Semester 2"),
+        (3, "Semester 3"),
+        (4, "Semester 4"),
+        (5, "Semester 5"),
+        (6, "Semester 6"),
+        (7, "Semester 7"),  
+        (8, "Semester 8")   
+    ])
+    percentage = models.FloatField()
 
 
 

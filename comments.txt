@@ -1,0 +1,9 @@
+# Django + Rasa
+
+python manage.py runserver
+rasa run --enable-api --cors "*"                         ------inside The Rasa Folder
+rasa run actions                                         ------inside The Rasa Folder
+
+# react.js
+
+npm run dev

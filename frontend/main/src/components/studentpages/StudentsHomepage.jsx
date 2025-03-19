@@ -13,15 +13,17 @@ export default function StudentsHomepage() {
       try {
         const response = await api.get("app3/profileview/");
         const data = response.data;
-        
+
 
         dispatch(
-          setUser({...userState,
+          setUser({
+            ...userState,
             name: data.student_name,
             regnum: data.student_reg,
             email: data.student_email,
             year: data.student_year,
             course: data.student_course,
+            profile: data.student_profile
           })
         );
       } catch (error) {
@@ -32,13 +34,12 @@ export default function StudentsHomepage() {
     fetchUserData();
   }, [dispatch]);
 
-  console.log(userState)
- 
+
+
 
   return (
-    <>
-      <div>StudentsHomepage</div>
-      <Studentpage />
-    </>
+
+    <Studentpage name={userState.name} profile={userState.profile} register={userState.regnum} />
+
   );
 }

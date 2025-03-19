@@ -58,7 +58,7 @@ export default function Login() {
       console.log(error);
       setError(
         error.response?.data?.detail ||
-          "An unexpected error occurred. Please try again."
+        "An unexpected error occurred. Please try again."
       );
     }
   };
@@ -127,7 +127,7 @@ export default function Login() {
                 required
                 autoComplete="current-password"
                 value={regNo}
-                onChange={(e) => setRegNo(e.target.value)}
+                onChange={(e) => setRegNo(e.target.value.toUpperCase())}
               />
               <TextField
                 label="Password"

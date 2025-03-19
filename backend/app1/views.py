@@ -43,7 +43,7 @@ class LoginView(APIView):
                 "role":user.role,
                 "userdetails": {
                             "id": org_user.student_name,
-                            "name": org_user.student_reg,  # Include only necessary fields
+                            "name": org_user.student_reg,
                             "email": org_user.student_course
                             }
             }, status=status.HTTP_200_OK)

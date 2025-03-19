@@ -85,6 +85,8 @@ nlu:
 
   - intent: bot_challenge
     examples: |
+      - who are you
+      - are You
       - are you a bot?
       - are you a human?
       - am I talking to a bot?
@@ -102,3 +104,38 @@ nlu:
     examples: |
       - What is my PAN number?
       - Tell me my PAN number
+      - My PAN
+      - My PAN Number?
+      - Tell My Pan
+
+  - intent: college_time
+    examples: |
+      - What is a college Timing
+      - College Time 
+      - College Timing
+      - Timing Of the College
+      - Time
+      - Timing
+      - When College Ends
+      - When College Starts
+      - College Starts Time
+      - College Ends Time
+
+  - intent: phone_number
+    examples: |
+      - What is a phone number
+      - What is a phone my number
+      - Phone Number
+      - phone Is 
+      - Mobile Number
+      - My Mobile Number Is
+      - What is My Mobile Number
+
+  - intent: who_creater
+    examples: |
+      - Who Created You
+      - WHo Made You
+      - You Created By?
+      - Whom Created u
+      - Created By
+      - Made By

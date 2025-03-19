@@ -19,6 +19,7 @@ export default function Register() {
   const currentState = useSelector((state) => state.std_staff.isstd_staff);
   const currentStateofreglog = useSelector((state) => state.reglog.isRegister);
 
+
   const [regNo, setRegNo] = useState("");
   const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
@@ -26,6 +27,8 @@ export default function Register() {
   const [otpSent, setOtpSent] = useState(false);
   const [error, setError] = useState("");
   const [successmsg, setSuccessmsg] = useState("");
+
+  const [otpLoading, setOtpLoading] = useState(false)
 
   const handleclearstd_staff = () => {
     dispatch(clearstd_staff());
@@ -35,22 +38,28 @@ export default function Register() {
   const handlestd_register = (data) => {
     const userData = { isRegister: data };
     dispatch(setRegister(userData));
+
   };
 
   const handleSendOtp = () => {
+    setOtpLoading(true)
     axios
       .post("http://127.0.0.1:8000/app1/generate-otp/", {
         reg_number: regNo,
       })
       .then((response) => {
+
         console.log("Response:", response.data);
+        setOtpLoading(false)
         setOtpSent(true);
         setSuccessmsg(response.data.message);
         setError(""); // Clear any previous errors
         setTimeout(() => setSuccessmsg(""), 70000);
+
       })
       .catch((error) => {
         console.log(error);
+        setOtpLoading(false)
 
         // Extract error message
         const errorMessage =
@@ -81,7 +90,12 @@ export default function Register() {
 
         setSuccessmsg(response.data.message);
 
-        setTimeout(() => setSuccessmsg(""), 70000);
+        setTimeout(() => setSuccessmsg(""), 60000);
+
+        setTimeout(() => {
+          handlestd_register(false);
+        }, 4000);
+
       })
       .catch((error) => {
         const errorMessage =
@@ -182,7 +196,7 @@ export default function Register() {
               autoComplete="current-password"
             />
             <TextField
-              label="Password"
+              label="Create Password"
               type="password"
               variant="outlined"
               fullWidth
@@ -203,7 +217,7 @@ export default function Register() {
                 }}
                 onClick={handleSendOtp}
               >
-                Send OTP
+                {!otpLoading ? "Send OTP" : "Sending OTP..."}
               </Button>
             ) : (
               <>

@@ -11,6 +11,16 @@ rules:
       - intent: bot_challenge
       - action: utter_iamabot
 
+  - rule: Handle college Time
+    steps:
+      - intent: college_time
+      - action: utter_college_time
+
+  - rule: Handle Mobile Number
+    steps:
+      - intent: phone_number
+      - action: action_fetch_mobilenum
+
   - rule: Handle arrears query
     steps:
       - intent: ask_arrears
@@ -20,3 +30,13 @@ rules:
     steps:
       - intent: ask_pan_number
       - action: action_fetch_pan
+
+  - rule: Handle greeting query
+    steps:
+      - intent: greet
+      - action: action_fetch_greet
+
+  - rule: Handle Creater Query
+    steps:
+      - intent: who_creater
+      - action: utter_who_creater

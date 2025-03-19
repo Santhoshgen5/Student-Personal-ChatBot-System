@@ -17,6 +17,7 @@ const userSlice = createSlice({
       state.email = action.payload.email;
       state.year = action.payload.year;
       state.course = action.payload.course;
+      state.profile = action.payload.profile;
       state.isLoggedIn = true;
     },
     clearUser: (state) => {
@@ -25,6 +26,7 @@ const userSlice = createSlice({
       state.email = "";
       state.year = "";
       state.course = "";
+      state.profile = "";
       state.isLoggedIn = false;
     },
   },
